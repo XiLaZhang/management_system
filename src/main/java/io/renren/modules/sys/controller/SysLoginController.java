@@ -14,6 +14,8 @@ import io.renren.modules.sys.form.SysLoginForm;
 import io.renren.modules.sys.service.SysCaptchaService;
 import io.renren.modules.sys.service.SysUserService;
 import io.renren.modules.sys.service.SysUserTokenService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,7 @@ import java.util.Map;
  *
  * @author Mark sunlightcs@gmail.com
  */
+@Api(tags = "登录接口")
 @RestController
 public class SysLoginController extends AbstractController {
 	@Autowired
@@ -96,5 +99,24 @@ public class SysLoginController extends AbstractController {
 		sysUserTokenService.logout(getUserId());
 		return R.ok();
 	}
-	
+
+	/**
+	 * 小程序登录验证
+	 */
+	@ApiOperation("小程序登录")
+	@PostMapping("/applet/login")
+	public R appletLogin(@RequestBody SysUserEntity form){
+		SysUserEntity user = sysUserService.queryByUserName(form.getUsername());
+		System.out.println(user.getUsername());
+		System.out.println(user.getPassword());
+		if(user == null || !user.getPassword().equals(form.getPassword())){
+			return R.error("账号或密码不正确");
+		}
+
+		if(user.getStatus() == 0){
+			return R.error("账号已被锁定,请联系管理员");
+		}
+
+		return R.ok();
+	}
 }

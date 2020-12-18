@@ -55,6 +55,11 @@ public class SysUserEntity implements Serializable {
 	private String salt;
 
 	/**
+	 * 真实姓名
+	 */
+//	private String realName;
+
+	/**
 	 * 邮箱
 	 */
 	@NotBlank(message="邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
@@ -65,6 +70,16 @@ public class SysUserEntity implements Serializable {
 	 * 手机号
 	 */
 	private String mobile;
+
+	/**
+	 * 职位
+	 */
+//	private String posision;
+
+	/**
+	 * 性别，0男，1女，2未知
+	 */
+//	private Integer gender;
 
 	/**
 	 * 状态  0：禁用   1：正常
