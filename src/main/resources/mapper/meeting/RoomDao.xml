@@ -13,5 +13,8 @@
         <result property="state" column="state"/>
     </resultMap>
 
+    <select id="queryNameById" resultType="string">
+        select room_name,place from room where room_id = #{roomId}
+    </select>
 
 </mapper>

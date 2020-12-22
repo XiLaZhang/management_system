@@ -16,5 +16,12 @@ import java.util.Map;
 public interface RoomService extends IService<RoomEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 根据会议室ID查询会议室名
+     * @param roomId
+     * @return
+     */
+    String queryNameById(Long roomId);
 }
 

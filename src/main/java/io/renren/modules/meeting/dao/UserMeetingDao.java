@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.renren.modules.meeting.entity.UserMeetingEntity;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 
  * 
@@ -13,5 +15,9 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMeetingDao extends BaseMapper<UserMeetingEntity> {
-	
+
+    /**
+     * 查询会议创建人的所有会议
+     */
+    List<Long> queryCreateMeetingList(Long userId);
 }

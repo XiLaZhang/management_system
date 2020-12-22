@@ -13,5 +13,9 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface RoomDao extends BaseMapper<RoomEntity> {
-	
+
+    /**
+     * 根据会议室ID查询会议室名
+     */
+    String queryNameById(Long roomId);
 }

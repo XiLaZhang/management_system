@@ -25,13 +25,13 @@ public class UserMeetingEntity implements Serializable {
 	@TableId
 	private Long id;
 	/**
-	 * 用户ID
-	 */
-	private Long userId;
-	/**
 	 * 会议ID
 	 */
 	private Long meetingId;
+	/**
+	 * 用户ID
+	 */
+	private Long userId;
 	/**
 	 * 是否会议创建人，0是，1否
 	 */

@@ -26,4 +26,8 @@ public class RoomServiceImpl extends ServiceImpl<RoomDao, RoomEntity> implements
         return new PageUtils(page);
     }
 
+    @Override
+    public String queryNameById(Long roomId) {
+        return baseMapper.queryNameById(roomId);
+    }
 }

@@ -16,5 +16,11 @@ import java.util.Map;
 public interface MeetingService extends IService<MeetingEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 保存会议对象
+     * @param meetingEntity
+     */
+    void saveMeeting(MeetingEntity meetingEntity,  Long createUserId);
 }
 

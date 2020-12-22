@@ -12,5 +12,8 @@
         <result property="joinState" column="join_state"/>
     </resultMap>
 
+    <select id="queryCreateMeetingList" resultType="long">
+        select meeting_id from user_meeting where user_id = #{userId} and create_state = 1
+    </select>
 
 </mapper>

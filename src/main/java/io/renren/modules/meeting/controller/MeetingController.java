@@ -1,17 +1,19 @@
 package io.renren.modules.meeting.controller;
 
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Map;
-import java.util.TimeZone;
+import java.util.*;
 
 import cn.hutool.core.date.DateUtil;
 import io.renren.common.utils.DateUtils;
 import io.renren.modules.meeting.entity.MeetingEntity;
+import io.renren.modules.meeting.entity.UserMeetingEntity;
+import io.renren.modules.meeting.service.MeetingRoomService;
 import io.renren.modules.meeting.service.MeetingService;
+import io.renren.modules.meeting.service.RoomService;
+import io.renren.modules.meeting.service.UserMeetingService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -34,15 +36,22 @@ import io.renren.common.utils.R;
 @RestController
 @RequestMapping("meeting/meeting")
 public class MeetingController {
+
     @Autowired
     private MeetingService meetingService;
+    @Autowired
+    private MeetingRoomService meetingRoomService;
+    @Autowired
+    private RoomService roomService;
+    @Autowired
+    private UserMeetingService userMeetingService;
 
     /**
      * 列表
      */
     @ApiOperation("查询所有")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-//    @RequiresPermissions("meeting:meeting:list")
+    @RequiresPermissions("meeting:meeting:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = meetingService.queryPage(params);
 
@@ -81,8 +90,21 @@ public class MeetingController {
     public R appletInfo(@PathVariable Long meetingId){
         MeetingEntity meeting = meetingService.getById(meetingId);
 
-        return R.ok().put("meeting", meeting);
+        Long roomId = meetingRoomService.queryRoomByMeeting(meetingId);
+//        String roomName = roomService.queryNameById(roomId);
+        meeting.setRoomId(roomId);
 
+        return R.ok().put("meeting", meeting);
+    }
+
+    /**
+     * 小程序按用户ID查询我的预定
+     */
+    @ApiOperation("小程序按用户ID查询我的预定")
+    @RequestMapping(value = "/applet/reserve/{userId}")
+    public R appletReserve(@PathVariable Long userId){
+        List<Long> list = userMeetingService.queryCreateMeetingList(userId);
+        return R.ok().put("list", list);
     }
 
     /**
@@ -103,8 +125,8 @@ public class MeetingController {
      */
     @ApiOperation("小程序新增会议")
     @RequestMapping(value="/applet/save", method = RequestMethod.POST)
-    public R appletSave(@RequestBody MeetingEntity meeting){
-        meetingService.save(meeting);
+    public R appletSave(@RequestBody MeetingEntity meeting, Long createUserId){
+        meetingService.saveMeeting(meeting,createUserId);
 
         return R.ok();
     }

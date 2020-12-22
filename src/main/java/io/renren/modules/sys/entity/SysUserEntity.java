@@ -74,12 +74,12 @@ public class SysUserEntity implements Serializable {
 	/**
 	 * 职位
 	 */
-//	private String posision;
+	private String posision;
 
 	/**
 	 * 性别，0男，1女，2未知
 	 */
-//	private Integer gender;
+	private Integer gender;
 
 	/**
 	 * 状态  0：禁用   1：正常

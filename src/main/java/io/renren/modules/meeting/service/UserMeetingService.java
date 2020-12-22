@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import io.renren.common.utils.PageUtils;
 import io.renren.modules.meeting.entity.UserMeetingEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,15 @@ import java.util.Map;
 public interface UserMeetingService extends IService<UserMeetingEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 添加用户会议信息
+     */
+    void saveUserMeeting(Long meetingId,List<Long>userId, Long createUserId);
+
+    /**
+     * 查询会议创建人的所有会议
+     */
+    List<Long> queryCreateMeetingList(Long userId);
 }
 

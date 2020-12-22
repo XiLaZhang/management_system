@@ -1,11 +1,13 @@
 package io.renren.modules.meeting.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -59,5 +61,19 @@ public class MeetingEntity implements Serializable {
 	 * 会议状态，0正常，1结束
 	 */
 	private Integer meetingStatus;
-
+	/**
+	 * 创建时间
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date createtime;
+	/**
+	 * 会议室ID
+	 */
+	@TableField(exist = false)
+	private Long roomId;
+	/**
+	 * 用户列表
+	 */
+	@TableField(exist = false)
+	private List<Long> userIdList;
 }

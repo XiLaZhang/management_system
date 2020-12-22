@@ -78,6 +78,14 @@ public class RoomController {
         return R.ok().put("room", room);
     }
 
+    /**
+     * 查询出当前可用的会议室
+     */
+//    @ApiOperation("小程序当前可用会议室")
+//    @RequestMapping("/applet/roomlist")
+//    public R roomList(){
+//
+//    }
 
     /**
      * 保存
