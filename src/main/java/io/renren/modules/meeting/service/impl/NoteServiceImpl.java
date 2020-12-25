@@ -1,5 +1,6 @@
 package io.renren.modules.meeting.service.impl;
 
+import io.renren.common.utils.Query;
 import io.renren.modules.meeting.dao.NoteDao;
 import io.renren.modules.meeting.entity.NoteEntity;
 import io.renren.modules.meeting.service.NoteService;
@@ -9,8 +10,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.renren.common.utils.PageUtils;
-import io.renren.common.utils.Query;
-
 
 
 @Service("noteService")

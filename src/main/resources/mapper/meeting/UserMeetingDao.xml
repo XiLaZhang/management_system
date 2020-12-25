@@ -16,4 +16,8 @@
         select meeting_id from user_meeting where user_id = #{userId} and create_state = 1
     </select>
 
+    <select id="queryUserListByMeetingId" resultType="long">
+        select user_id from user_meeting where meeting_id = #{meetingId} and join_state = 0
+    </select>
+
 </mapper>

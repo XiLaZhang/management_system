@@ -57,7 +57,7 @@ public class SysUserEntity implements Serializable {
 	/**
 	 * 真实姓名
 	 */
-//	private String realName;
+	private String realName;
 
 	/**
 	 * 邮箱
@@ -80,7 +80,6 @@ public class SysUserEntity implements Serializable {
 	 * 性别，0男，1女，2未知
 	 */
 	private Integer gender;
-
 	/**
 	 * 状态  0：禁用   1：正常
 	 */

@@ -13,7 +13,10 @@
         <result property="starttime" column="starttime"/>
         <result property="endtime" column="endtime"/>
         <result property="meetingStatus" column="meeting_status"/>
+        <result property="signCode" column="sign_code"/>
     </resultMap>
 
-
+    <select id="queryMeetingByCode" resultType="integer">
+        select meeting_id from meeting where sign_code = #{code}
+    </select>
 </mapper>

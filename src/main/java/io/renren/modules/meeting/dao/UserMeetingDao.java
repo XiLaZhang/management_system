@@ -20,4 +20,10 @@ public interface UserMeetingDao extends BaseMapper<UserMeetingEntity> {
      * 查询会议创建人的所有会议
      */
     List<Long> queryCreateMeetingList(Long userId);
+
+    /**
+     * 按会议ID以及参会状态查询参会人员
+     */
+    List<Long> queryUserListByMeetingId(Long meetingId);
+
 }

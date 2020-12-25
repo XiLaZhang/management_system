@@ -5,7 +5,7 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="io.renren.modules.meeting.entity.MissionEntity" id="missionMap">
-        <result property="id" column="id"/>
+        <result property="missionId" column="id"/>
         <result property="topic" column="topic"/>
         <result property="outline" column="outline"/>
         <result property="task" column="task"/>
