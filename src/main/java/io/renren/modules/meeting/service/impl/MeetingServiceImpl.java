@@ -5,6 +5,7 @@ import io.renren.modules.meeting.entity.MeetingEntity;
 import io.renren.modules.meeting.service.UserMeetingService;
 import io.renren.modules.meeting.dao.MeetingDao;
 import io.renren.modules.meeting.service.MeetingService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,17 @@ public class MeetingServiceImpl extends ServiceImpl<MeetingDao, MeetingEntity> i
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+        String meetingname = (String)params.get("meetingname");
+        QueryWrapper<MeetingEntity> meetingname1=null;
+        if (StringUtils.isBlank(meetingname)){
+            meetingname1 = new QueryWrapper<MeetingEntity>();
+        }else{
+            meetingname1 = new QueryWrapper<MeetingEntity>().like("meetingname", meetingname);
+
+        }
         IPage<MeetingEntity> page = this.page(
                 new Query<MeetingEntity>().getPage(params),
-                new QueryWrapper<MeetingEntity>()
+                meetingname1
         );
 
         return new PageUtils(page);
